@@ -11,8 +11,9 @@ export const AuthProvider = ({children}) => {
 
   const login = async (data) => {
     setUser(data)
-    navigate("/verify-2fa")
-    //navigate("/secret")
+    //navigate("/dashboard/profile", { replace: true })
+    //navigate("/verify-2fa")
+    navigate("/secret")
   }  
   const auth2FA2 = async (x) => {
     if (x === "1") {

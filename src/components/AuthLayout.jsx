@@ -1,5 +1,8 @@
-import { useLoaderData, useOutlet } from "react-router-dom"
-import { AuthProvider } from "../hooks/useAuth"
+import {Suspense} from 'react'
+import { useLoaderData, useOutlet, Await } from 'react-router-dom'
+import { AuthProvider } from '../hooks/useAuth'
+import LinearProgress from '@mui/material/LinearProgress'
+import Alert from '@mui/material/Alert'
 export const AuthLayout = () => {
   const outlet = useOutlet()
   const { userPromise } = useLoaderData()
