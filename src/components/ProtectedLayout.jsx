@@ -1,20 +1,24 @@
-import { Link, Navigate, useOutlet } from "react-router-dom"
+import { Navigate, useOutlet } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
-
+import { AppBar } from './AppBar'
 export const ProtectedLayout = () => {
-  const { user } = useAuth()
+  const { user2, auth2FA2 } = useAuth()
   const outlet = useOutlet()
-
-  if (!user) {
-    return <Navigate to="/" />
+  console.log(user2, auth2FA2)
+  if (!user2) {
+      return <Navigate to="/login" />
   }
-
+  else if(!auth2FA2) {
+    return <Navigate to="/verify-2fa" />
+  } 
   return (
-    <div>
-      <nav>
-        <Link to="/settings">Settings</Link>
-        <Link to="/profile">Profile</Link>
-      </nav>
+    <div className='contents'>
+      <AppBar
+        pages={[
+          { label: "Settings", path: "settings" },
+          { label: "Profile", path: "profile" }
+        ]}
+      />
       {outlet}
     </div>
   )

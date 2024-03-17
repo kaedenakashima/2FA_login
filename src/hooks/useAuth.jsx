@@ -1,43 +1,36 @@
-import { createContext, useContext, useState, useMemo } from "react"
-import { useNavigate } from "react-router-dom"
-import { useLocalStorage } from "./useLocalStorage"
+import { createContext, useContext, useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useLocalStorage } from './useLocalStorage'
 const AuthContext = createContext()
-
 export const AuthProvider = ({children}) => {
-  const [user, setUser] = useLocalStorage("user", null)
-  const [auth2FA1, setAuth2FA1] = useState(false)
-
+  const [user2, setUser2] = useLocalStorage('user', null)
+  const [auth2FA2, setAuth2FA2] = useState(null)
   const navigate = useNavigate()
 
   const login = async (data) => {
-    setUser(data)
-    //navigate("/dashboard/profile", { replace: true })
-    //navigate("/verify-2fa")
-    navigate("/secret")
+    setUser2(data)
+    navigate('/verify-2fa')
   }  
-  const auth2FA2 = async (x) => {
-    if (x === "1") {
-      setAuth2FA1(true)
-      return true
-    }
-    return false
-  };
+  const auth2FA1 = async (x) => {
+    setAuth2FA2('true')
+    navigate('/dashboard/profile', { replace: true })
+  }
 
   const logout = () => {
-    setUser(null)
-    setAuth2FA1(false)
-    navigate("/", { replace: true })
+    setUser2(null)
+    setAuth2FA2(null)
+    navigate('/', { replace: true })
   }
 
   const value = useMemo(
     () => ({
-      user,
-      auth2FA1,
+      user2,
+      auth2FA2,
       login,
       logout,
-      auth2FA2,
+      auth2FA1,
     }),
-    [user]
+    [user2, auth2FA2]
   )
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

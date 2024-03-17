@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom"
 import Container from '@mui/material/Container'
 import Avatar from '@mui/material/Avatar'
 import Box from '@mui/material/Box'
@@ -20,7 +19,6 @@ export const BasicPage = ({ title, icon }) => {
         <Typography component='h1' variant='h5'>
           {title}
         </Typography>
-        <Link to='/login'>Go to Login page</Link>
       </Box>
     </Container>
   )

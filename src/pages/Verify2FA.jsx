@@ -1,32 +1,27 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "../hooks/useAuth"
+import { useState } from 'react'
+import { useAuth } from '../hooks/useAuth'
 
-export const Verify2FA = ({auth2FA4}) => {
-  const navigate = useNavigate()
-  const {auth2FA2} = useAuth()
-  const [code, setCode] = useState("")
+export const Verify2FA = () => {
+  const {auth2FA1} = useAuth()
+  const [code, setCode] = useState('')
 
-  const handleSubmit = async (e) => {
+  const onSubmit22FA = async (e) => {
     e.preventDefault()
-    const auth2FA3 = await auth2FA2(code)
-    auth2FA4(auth2FA3)
-    if (auth2FA3) {
-      navigate("/secret")
+    if (code === '1') {
+      await auth2FA1({ code })
     } else {
-      alert("Invalid code. Please try again.")
+      alert('Invalid code. Please try again.')
     }
   }
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit22FA}>
       <input
-        type= "text"
+        type= 'text'
         value={code}
         onChange={(e) => setCode(e.target.value)}
-        placeholder= "Enter verification code"
+        placeholder= 'Enter verification code'
       />
-      <button type="submit">Verify</button>
+      <button type='submit'>Verify</button>
     </form>
   )
 }

@@ -1,17 +1,12 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { Navigate } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
 
-export const ProtectedRoute = ({ children, 
-  //auth2FA7
-}) => {
-  const {user} = useAuth()
-  if (!user) {
+export const ProtectedRoute = ({ children }) => {
+  const {user2} = useAuth()
+  if (!user2) {
     return <Navigate to="/login" />
   }
-  // if (!auth2FA7) {
-  //   return <Navigate to="/verify-2fa" />
-  // } 
   return children
 }
 

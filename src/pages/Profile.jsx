@@ -1,16 +1,5 @@
-import { useAuth } from "../hooks/useAuth"
-
+import { BasicPage } from '../components/BasicPage'
+import Person from '@mui/icons-material/Person'
 export const ProfilePage = () => {
-  const { logout } = useAuth()
-
-  const handleLogout = () => {
-    logout()
-  }
-
-  return (
-    <div>
-      <h1>Profile page</h1>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
-  )
+  return <BasicPage title='Profile page' icon={<Person/>}/>
 }
